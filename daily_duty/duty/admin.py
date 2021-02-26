@@ -5,9 +5,13 @@ from .models import Month
 from .models import Period
 from .models import WorkHours
 from .models import Employees
+from .models import SupportLine
+from .models import CommandLine
 
 admin.site.register(Month)
 admin.site.register(Period)
+admin.site.register(SupportLine)
+admin.site.register(CommandLine)
 
 class WhAdmin(admin.ModelAdmin) :
 	list_display = ('period', 'days_quantity', 'workhours_sum')

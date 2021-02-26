@@ -144,6 +144,19 @@ class WorkHours(models.Model):
         # ordering = ['-year', 'month']
         # unique_together = ('year', 'month')
 
+class SupportLine(models.Model):
+    name = models.CharField(max_length=200, verbose_name='Наименование')
+    class Meta:
+        verbose_name_plural = 'Линия поддержки'
+        verbose_name = 'Линия поддержки'
+
+class CommandLine(models.Model):
+    name = models.CharField(max_length=200, verbose_name='Наименование')
+    class Meta:
+        verbose_name_plural = 'Команды'
+        verbose_name = 'Команда'
+
+
 class Employees(models.Model):
     surname = models.CharField(max_length=40, verbose_name='Фамилия',
                             validators=[validators.RegexValidator("^['А-Я']['а-я']+",
@@ -154,7 +167,10 @@ class Employees(models.Model):
     middle_name = models.CharField(max_length=20, verbose_name='Отчество',
                             validators=[validators.RegexValidator("^['А-Я']['а-я']+",
                                                                   message='отчество должно начинаться с большой буквы, кириллицей')])
-
+    supportline = models.ForeignKey('SupportLine', verbose_name='Линия поддержки', on_delete=models.PROTECT,
+                                    null=True)
+    commandline = models.ForeignKey('CommandLine', verbose_name='Команда', on_delete=models.PROTECT,
+                                    null=True)
     def full_name(self):
         return f'{self.surname} {self.name[0:1]}. {self.middle_name[0:1]}.'
 
