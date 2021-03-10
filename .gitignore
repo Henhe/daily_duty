@@ -1,3 +1,4 @@
 /daily_duty/db.sqlite3
 /daily_duty/Django.bat
 /daily_duty/duty/fixtures/*
+/.idea/*
