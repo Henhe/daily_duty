@@ -143,19 +143,38 @@ class WorkHours(models.Model):
         verbose_name = 'Рабочее время месяц'
         # ordering = ['-year', 'month']
         # unique_together = ('year', 'month')
+    def __str__(self):
+        s = f'{self.period} \
+        (1){self.day1} (2){self.day2} (3){self.day3} (4){self.day4} (5){self.day5} (6){self.day6} (7){self.day7} (8){self.day8} \
+        (9){self.day9} (10){self.day10} (11){self.day11} (12){self.day12} (13){self.day13} (14){self.day14} (15){self.day15} \
+        (16){self.day16} (17){self.day17} (18){self.day18} (19){self.day19} (20){self.day20} (21){self.day21} (22){self.day22} \
+        (23){self.day23} (24){self.day24} (25){self.day25} (26){self.day26} (27){self.day27} (28){self.day28}'
+        if self.days_quantity > 30:
+            s += f' (29){self.day29} (30){self.day30} (31){self.day31}'
+        elif self.days_quantity > 29:
+            s += f' (29){self.day29} (30){self.day30}'
+        elif self.days_quantity > 28:
+            s += f' (29){self.day29}'
+        s += f' сумма ={self.workhours_sum()}'
+        return s
 
 class SupportLine(models.Model):
     name = models.CharField(max_length=200, verbose_name='Наименование')
     class Meta:
         verbose_name_plural = 'Линия поддержки'
         verbose_name = 'Линия поддержки'
+        ordering = ['pk']
+    def __str__(self):
+        return f'{self.name}'
 
 class CommandLine(models.Model):
     name = models.CharField(max_length=200, verbose_name='Наименование')
     class Meta:
         verbose_name_plural = 'Команды'
         verbose_name = 'Команда'
-
+        ordering = ['pk']
+    def __str__(self):
+        return f'{self.name}'
 
 class Employees(models.Model):
     surname = models.CharField(max_length=40, verbose_name='Фамилия',
