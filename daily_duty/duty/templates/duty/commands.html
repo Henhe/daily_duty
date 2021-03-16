@@ -1,0 +1,9 @@
+﻿{% extends "layout/basic.html" %} 
+{% block content %}
+<p><a href="{% url 'addcommands' 0%}">ДОБАВИТЬ НОВУЮ</a></p>
+{% for bb in bbs %}
+<div>
+	<p><a href="{% url 'addcommands' bb.pk%}">{{ bb.name }}</a></p>
+</div>
+{% endfor %} 
+{% endblock %} 

@@ -1,0 +1,25 @@
+﻿{% load static %} 
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="UTF-8"> 
+<!--		<title>{% block title %}Главная{% endblock %}</title>-->
+		<link rel="stylesheet" type="text/css" href="{% static 'duty/style.css' %}">
+	</head> 
+	<body> 
+		<header> 
+			<h1>Главная</h1>
+		</header>
+		<nav>
+			<a href="{% url 'commands' %}">Команды</a><br>
+			<a href="{% url 'lines' %}">Линии поддержки</a><br>
+			<a href="{% url 'staff' %}">Сотрудники</a><br>
+			<a href="{% url 'periods' %}">Рабочее время</a><br>
+			<a href="{% url 'dutyes' %}">Дежурства</a><br>
+		</nav>
+		<section>
+		{%block content %} 
+		{% endblock %} 
+		</section> 
+	</body> 
+</html>

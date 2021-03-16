@@ -19,7 +19,8 @@ from django.urls import path, include
 from duty.views import index 
 
 urlpatterns = [
-    #path('duty/', include('duty.urls')),
-	path('duty/', index), 
+    path('', include('duty.urls')),
+    path('duty/', include('duty.urls')),
+	# path('addcommands/', include('duty.urls')),
     path('admin/', admin.site.urls),
 ]
