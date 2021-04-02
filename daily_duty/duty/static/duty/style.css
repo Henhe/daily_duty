@@ -1,22 +1,68 @@
 ﻿header h1 { 
 	font-size: 40pt; 
 	text-transform: uppercase; 
-	text-align: center; 
-	background: url("bg.jpg") left / auto 100% no-repeat; 
-}	
+	text-align: center;
+}
 
-nav { 
-	font-size: 16pt; 
-	width: 150px;
+a{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: red;
+}
+
+nav {
+	font-size: 16pt;
+	width: 200px;
 	float: left;
 }
 
 nav а {
 	display: blосk;
 	margin: l0px 0px;
+	width:200px
 }
 
-	
-section { 
-	margin-left: 170px; 
+section {
+	margin-left: 250px;
+}
+
+.view_table{
+    cellpadding: 7
+    cellspacing: 0
+}
+
+.table_view_td_name{
+    width:300px
+}
+
+.month_table_td_name{
+    width:300px
+}
+
+.table_view_td_del{
+    width:50px
+}
+
+div table td{
+  color: #669;
+  border-bottom: 1px solid #e8edff;
+  padding: 10px 15px;
+}
+
+div table tr:nth-child(2n){
+    background: #edeef1;
+}
+
+.month_table tbody tr td input{
+   width:50px;
+
+}
+
+.duty_table_td_name{
+    width:10px
+    text-align:"center"
 }

@@ -1,9 +1,18 @@
-﻿{% extends "layout/basic.html" %} 
+﻿﻿{% extends "layout/basic.html" %} 
 {% block content %}
-<p><a href="{% url 'addcommands' 0%}">ДОБАВИТЬ НОВУЮ</a></p>
-{% for bb in bbs %}
+<p><a href="{% url 'view_list' 'commands' 0 'edit'%}">ДОБАВИТЬ НОВУЮ</a></p>
 <div>
-	<p><a href="{% url 'addcommands' bb.pk%}">{{ bb.name }}</a></p>
+	<table class="view_table">
+	{% for bb in bbs %}
+		<tr class = "table_view_tr">
+			<td class = "table_view_td_name">
+				<a href="{% url 'view_list' 'commands' bb.pk 'edit'%}">{{ bb.name }}</a>
+			</td>
+			<td class = "table_view_td_del">
+				<a href="{% url 'view_list' 'commands' bb.pk 'del'%}">Удалить...</a>
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
 </div>
-{% endfor %} 
 {% endblock %} 

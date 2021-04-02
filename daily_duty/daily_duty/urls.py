@@ -16,11 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from duty.views import index 
-
 urlpatterns = [
-    path('', include('duty.urls')),
+    # path('', include('duty.urls')),
     path('duty/', include('duty.urls')),
-	# path('addcommands/', include('duty.urls')),
+    # path('addcommands/', include('duty.urls')),
     path('admin/', admin.site.urls),
 ]

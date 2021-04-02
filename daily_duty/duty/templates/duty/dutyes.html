@@ -1,12 +1,28 @@
 ﻿{% extends "layout/basic.html" %} 
-{% block content %} 
-{% for bb in bbs %}
-<div> 
-	<h2>{{ bb.title }}</h2> 
-	<p>{{ bb.content }}</p> 
-	<p><a href="{% url 'by_rubric' bb.rubric.pk %}"> 
-	{{ bb.rubric.name }}</a></p> 
-	<p>{{ bb.published|date:"d.m.Y H:i:s" }}</p> 
-</div> 
-{% endfor %} 
+{% block content %}
+<p><a href="{% url 'view_list' 'dutyes' 0 'edit'%}">ДОБАВИТЬ НОВОЕ</a></p>
+<div>
+	<table class="view_table">
+	{% for bb in bbs %}
+		<tr class = "table_view_tr">
+			<td class = "table_view_td_name">
+				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.workhours }}</a>
+			</td>
+			<td class = "table_view_td_name" >
+				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.employee }}</a>
+			</td>
+			<td class = "table_view_td_name" >
+				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.commandline }}</a>
+			</td>
+			<td class = "table_view_td_name" >
+				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.supportline }}</a>
+			</td>
+			<td class = "table_view_td_del">
+				<a href="{% url 'view_list' 'dutyes' bb.pk 'del'%}">Удалить...</a>
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
 {% endblock %} 

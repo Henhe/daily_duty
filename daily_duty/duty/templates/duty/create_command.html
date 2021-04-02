@@ -1,10 +1,10 @@
 ﻿{% extends "layout/basic.html" %} 
-{% block title %}Добавление команды {% endblock %}
-{% block content %} 
-<h2>Добавление команды </h2>
-<form method="post"> 
+{% block title %}{{ type_command }} команды {% endblock %}
+{% block content %}
+<h2>{{ type_command }} команды </h2>
+<form method="post">
 	{% csrf_token %}
-	{{ form.as_p }} 
-	<input type="submit" vаluе="Добавить"> 
+	{{ form.as_p }}
+	<input type="submit" vаluе="Сохранить">
 </form> 
 {% endblock %} 

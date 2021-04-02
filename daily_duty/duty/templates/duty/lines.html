@@ -1,12 +1,18 @@
-﻿{% extends "layout/basic.html" %} 
-{% block content %} 
+﻿﻿{% extends "layout/basic.html" %} 
+{% block content %}
+<p><a href="{% url 'view_list' 'lines' 0 'edit'%}">ДОБАВИТЬ НОВУЮ</a></p>
+<div>
+	<table class="view_table">
 {% for bb in bbs %}
-<div> 
-	<h2>{{ bb.title }}</h2> 
-	<p>{{ bb.content }}</p> 
-	<p><a href="{% url 'by_rubric' bb.rubric.pk %}"> 
-	{{ bb.rubric.name }}</a></p> 
-	<p>{{ bb.published|date:"d.m.Y H:i:s" }}</p> 
-</div> 
-{% endfor %} 
+		<tr class = "table_view_tr">
+			<td class = "table_view_td_name" >
+				<a href="{% url 'view_list' 'lines' bb.pk 'edit'%}">{{ bb.name }}</a>
+			</td>
+			<td class = "table_view_td_del">
+				<a href="{% url 'view_list' 'lines' bb.pk 'del'%}">Удалить...</a>
+			</td>
+		</tr>
+{% endfor %}
+	</table>
+</div>
 {% endblock %} 

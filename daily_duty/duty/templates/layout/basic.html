@@ -5,6 +5,12 @@
 		<meta charset="UTF-8"> 
 <!--		<title>{% block title %}Главная{% endblock %}</title>-->
 		<link rel="stylesheet" type="text/css" href="{% static 'duty/style.css' %}">
+		<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+<!--		<script type="text/javascript">-->
+<!--		function inputNumber(a,b) {-->
+<!--	  		alert('привет');-->
+<!--		}-->
+<!--		</script>-->
 	</head> 
 	<body> 
 		<header> 
@@ -13,8 +19,9 @@
 		<nav>
 			<a href="{% url 'commands' %}">Команды</a><br>
 			<a href="{% url 'lines' %}">Линии поддержки</a><br>
-			<a href="{% url 'staff' %}">Сотрудники</a><br>
-			<a href="{% url 'periods' %}">Рабочее время</a><br>
+			<a href="{% url 'employees' %}">Сотрудники</a><br>
+			<a href="{% url 'periods' %}">Периоды</a><br>
+			<a href="{% url 'workhours' %}">Рабочее время</a><br>
 			<a href="{% url 'dutyes' %}">Дежурства</a><br>
 		</nav>
 		<section>
