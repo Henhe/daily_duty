@@ -1,19 +1,31 @@
 ﻿﻿{% extends "layout/basic.html" %} 
 {% block content %}
-<p><a href="{% url 'view_list' 'periods' 0 'edit'%}">ДОБАВИТЬ НОВЫЙ</a></p>
+{% if perms.duty.add_period %}
+	<p><a href="{% url 'view_list' 'periods' 0 'edit'%}">ДОБАВИТЬ НОВЫЙ</a></p>
+{% endif %}
 <div>
 	<table class="view_table">
 	{% for bb in bbs %}
 		<tr class = "table_view_tr">
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'periods' bb.pk 'edit'%}">{{ bb.month }}</a>
+				{% if perms.duty.change_period %}
+					<a href="{% url 'view_list' 'periods' bb.pk 'edit'%}">{{ bb.month }}</a>
+				{% else %}
+					{{ bb.month }}
+				{% endif %}
 			</td>
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'periods' bb.pk 'edit'%}">{{ bb.year }}</a>
+				{% if perms.duty.change_period %}
+					<a href="{% url 'view_list' 'periods' bb.pk 'edit'%}">{{ bb.year }}</a>
+				{% else %}
+					{{ bb.year }}
+				{% endif %}
 			</td>
-			<td class = "table_view_td_del">
-				<a href="{% url 'view_list' 'periods' bb.pk 'del'%}">Удалить...</a>
-			</td>
+			{% if perms.duty.delete_period %}
+				<td class = "table_view_td_del">
+					<a href="{% url 'view_list' 'periods' bb.pk 'del'%}">Удалить...</a>
+				</td>
+			{% endif %}
 		</tr>
 	{% endfor %}
 	</table>

@@ -36,11 +36,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'duty.apps.DutyConfig',
+    # rest
+    'rest_framework',
+    'corsheaders',
+    # end rest
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # rest
+    'corsheaders.middleware.CorsMiddleware',
+    # end rest
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -113,3 +120,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MY_ERROR = 80
+MESSAGE_LEVEL = MY_ERROR
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 2225
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'klim'
+EMAIL_HOST_PASSWORD = '0222'
+# если используется защищенное соединение
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

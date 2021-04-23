@@ -1,6 +1,6 @@
-﻿header h1 { 
-	font-size: 40pt; 
-	text-transform: uppercase; 
+﻿header h1 {
+	font-size: 40pt;
+	text-transform: uppercase;
 	text-align: center;
 }
 
@@ -47,10 +47,14 @@ section {
     width:50px
 }
 
+.table_view_report_td{
+    width:20px
+}
+
 div table td{
   color: #669;
   border-bottom: 1px solid #e8edff;
-  padding: 10px 15px;
+  padding: 2px 2px;
 }
 
 div table tr:nth-child(2n){
@@ -65,4 +69,10 @@ div table tr:nth-child(2n){
 .duty_table_td_name{
     width:10px
     text-align:"center"
+}
+
+.registration{
+    color: blue;
+    text-decoration: underline; /* Убираем подчёркивание */
+
 }

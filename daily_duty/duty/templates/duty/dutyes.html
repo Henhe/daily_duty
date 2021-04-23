@@ -1,25 +1,45 @@
 ﻿{% extends "layout/basic.html" %} 
 {% block content %}
-<p><a href="{% url 'view_list' 'dutyes' 0 'edit'%}">ДОБАВИТЬ НОВОЕ</a></p>
+{% if perms.duty.add_dutyes %}
+	<p><a href="{% url 'view_list' 'dutyes' 0 'edit'%}">ДОБАВИТЬ НОВОЕ</a></p>
+{% endif %}
 <div>
 	<table class="view_table">
 	{% for bb in bbs %}
 		<tr class = "table_view_tr">
 			<td class = "table_view_td_name">
-				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.workhours }}</a>
+				{% if perms.duty.change_dutyes %}
+					<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.workhours }}</a>
+				{% else %}
+					{{ bb.workhours }}
+				{% endif %}
 			</td>
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.employee }}</a>
+				{% if perms.duty.change_dutyes %}
+					<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.employee }}</a>
+				{% else %}
+					{{ bb.employee }}
+				{% endif %}
 			</td>
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.commandline }}</a>
+				{% if perms.duty.change_dutyes %}
+					<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.commandline }}</a>
+				{% else %}
+					{{ bb.commandline }}
+				{% endif %}
 			</td>
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.supportline }}</a>
+				{% if perms.duty.change_dutyes %}
+					<a href="{% url 'view_list' 'dutyes' bb.pk 'edit'%}">{{ bb.supportline }}</a>
+				{% else %}
+					{{ bb.supportline }}
+				{% endif %}
 			</td>
-			<td class = "table_view_td_del">
-				<a href="{% url 'view_list' 'dutyes' bb.pk 'del'%}">Удалить...</a>
-			</td>
+			{% if perms.duty.delete_dutyes %}
+				<td class = "table_view_td_del">
+					<a href="{% url 'view_list' 'dutyes' bb.pk 'del'%}">Удалить...</a>
+				</td>
+			{% endif %}
 		</tr>
 	{% endfor %}
 	</table>

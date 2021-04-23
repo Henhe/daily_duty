@@ -3,28 +3,50 @@
 <html> 
 	<head> 
 		<meta charset="UTF-8"> 
-<!--		<title>{% block title %}Главная{% endblock %}</title>-->
+
 		<link rel="stylesheet" type="text/css" href="{% static 'duty/style.css' %}">
 		<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
-<!--		<script type="text/javascript">-->
-<!--		function inputNumber(a,b) {-->
-<!--	  		alert('привет');-->
-<!--		}-->
-<!--		</script>-->
-	</head> 
-	<body> 
-		<header> 
-			<h1>Главная</h1>
+	</head>
+	<body>
+		{% if user.is_authenticated %}
+			<a href="{% url 'logout' %}">ВЫЙТИ</a><br>
+		{% endif %}
+		<header>
+			<a href="{% url 'index' %}"><h1>Главная</h1></a>
 		</header>
 		<nav>
-			<a href="{% url 'commands' %}">Команды</a><br>
-			<a href="{% url 'lines' %}">Линии поддержки</a><br>
-			<a href="{% url 'employees' %}">Сотрудники</a><br>
-			<a href="{% url 'periods' %}">Периоды</a><br>
-			<a href="{% url 'workhours' %}">Рабочее время</a><br>
-			<a href="{% url 'dutyes' %}">Дежурства</a><br>
+			{% if perms.duty.view_commandline %}
+				<a href="{% url 'commands' %}">Команды</a><br>
+			{% endif %}
+			{% if perms.duty.view_supportline %}
+				<a href="{% url 'lines' %}">Линии поддержки</a><br>
+			{% endif %}
+			{% if perms.duty.view_employees %}
+				<a href="{% url 'employees' %}">Сотрудники</a><br>
+			{% endif %}
+			{% if perms.duty.view_period %}
+				<a href="{% url 'periods' %}">Периоды</a><br>
+			{% endif %}
+			{% if perms.duty.view_workHours %}
+				<a href="{% url 'workhours' %}">Рабочее время</a><br>
+			{% endif %}
+			{% if perms.duty.view_dutyes %}
+				<a href="{% url 'dutyes' %}">Дежурства</a><br>
+			{% endif %}
+			{% if perms.duty.view_dutyes %}
+				<a href="{% url 'fillduty' %}">Заполнить дежурства</a><br>
+			{% endif %}
 		</nav>
 		<section>
+			{% if messages %}
+				<ul class="messages">
+				{% for message in messages %}
+					<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+						{{ message }}
+					</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
 		{%block content %} 
 		{% endblock %} 
 		</section> 

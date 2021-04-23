@@ -1,16 +1,24 @@
 ﻿﻿{% extends "layout/basic.html" %} 
 {% block content %}
-<p><a href="{% url 'view_list' 'lines' 0 'edit'%}">ДОБАВИТЬ НОВУЮ</a></p>
+{% if perms.duty.add_supportline %}
+	<p><a href="{% url 'view_list' 'lines' 0 'edit'%}">ДОБАВИТЬ НОВУЮ</a></p>
+{% endif %}
 <div>
 	<table class="view_table">
 {% for bb in bbs %}
 		<tr class = "table_view_tr">
 			<td class = "table_view_td_name" >
-				<a href="{% url 'view_list' 'lines' bb.pk 'edit'%}">{{ bb.name }}</a>
+				{% if perms.duty.change_supportline %}
+					<a href="{% url 'view_list' 'lines' bb.pk 'edit'%}">{{ bb.name }}</a>
+				{% else %}
+					{{ bb.name }}
+				{% endif %}
 			</td>
-			<td class = "table_view_td_del">
-				<a href="{% url 'view_list' 'lines' bb.pk 'del'%}">Удалить...</a>
-			</td>
+			{% if perms.duty.delete_supportline %}
+				<td class = "table_view_td_del">
+					<a href="{% url 'view_list' 'lines' bb.pk 'del'%}">Удалить...</a>
+				</td>
+			{% endif %}
 		</tr>
 {% endfor %}
 	</table>

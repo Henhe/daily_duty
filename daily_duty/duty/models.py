@@ -367,3 +367,18 @@ class Dutyes(models.Model):
                     continue
             self.__setattr__(name_elem, res)
         self.save()
+
+    def get_info_for_index(self):
+        dict_ans = {}
+        dict_ans['pk'] = self.pk
+        dict_ans['employee'] = self.employee
+        for i in range(1, self.workhours.days_quantity + 1):
+            name_elem = f'day{i}'
+            # print(f'{i} {name_elem} {self.__getattribute__(name_elem)} {self.workhours.__getattribute__(name_elem)}')
+            if self.__getattribute__(name_elem):
+                dict_ans[name_elem] = float(24 - self.workhours.__getattribute__(name_elem))
+            else:
+                dict_ans[name_elem] = float(0)
+        dict_ans['workhours_sum'] = self.workhours_sum
+        dict_ans['workhours_holidays'] = self.workhours_holidays
+        return dict_ans
